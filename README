@@ -1,0 +1,40 @@
+
+Build BibleTime for Windows
+
+This project uses a cmake script to create a build system for Microsoft Visual Studio.
+It will build BibleTime and create an install package. 
+
+
+Installed Requirements:
+
+Microsoft Visual Studio Community Edition (2019, 2017)
+cmake (recent version like 3.17)
+NSIS (Nullsoft Scriptable Install System)
+pkg-config-lite (0.28-1)
+
+
+
+The environment variable VCINSTALLDIR must be correctly set or the Microsoft 
+redistributible library won't be copied to the package. One way to do this 
+is to run the vcvars32.bat script in a cmd windows and then launch devenv.exe
+For VS 2019 installed at the default location:
+
+c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\vc\Auxiliary/Build\vcvars.bat
+devenv.exe
+
+Clone this git repository creating the bibletime-win directory
+In the parent directory of bibletime-win create a "build" directory.
+From the "build" directory run init.bat like this:
+  ..\bibletime-win\init.bat   (edit init.bat if necessary to change compilers or paths) 
+Open the bibletime-win.sln solution in Visual Studio. It will be in the "build" directory.
+Build the solution. 
+
+If the build works correctly you should see a line that looks like this:
+
+7>  CPack: - package: C:/bibletime/build/bibletime-prefix/src/bibletime-build/BibleTime-3.0.0_rc1-win32.exe generated.
+
+This exe file is the installer package for BibleTime.
+
+
+
+
