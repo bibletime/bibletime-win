@@ -19,7 +19,7 @@ redistributible library won't be copied to the package. One way to do this
 is to run the vcvars32.bat script in a cmd windows and then launch devenv.exe
 For VS 2019 installed at the default location:
 
-c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\vc\Auxiliary/Build\vcvars.bat
+"c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\vc\Auxiliary/Build\vcvars32.bat"
 devenv.exe
 
 Clone this git repository creating the bibletime-win directory
