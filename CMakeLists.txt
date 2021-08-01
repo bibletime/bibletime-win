@@ -86,17 +86,19 @@ ExternalProject_Add(
     GIT_REPOSITORY https://github.com/bibletime/generated_docs.git
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
-    INSTALL_COMMAND cmake -E copy_directory ../bibletime-docs/docs/${BT_DOC_REV}  ${PROJECT_INSTALL_DIR}/share/doc/bibletime
+    INSTALL_COMMAND ""
 )
-
+ExternalProject_Get_Property(bibletime-docs SOURCE_DIR)
+Set(bibletime-docs_SOURCE_DIR ${SOURCE_DIR})
+MESSAGE(STATUS  "docs: ${bibletime-docs_SOURCE_DIR}" )
 
 
 ExternalProject_Add(
     bibletime
-    #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
     #GIT_REPOSITORY https://github.com/bibletime/bibletime.git
     #GIT_TAG ${GIT_BRANCH_OR_TAG} 
-    URL https://github.com/bibletime/bibletime/archive/v3.0.zip
+    #URL https://github.com/bibletime/bibletime/archive/v3.0.1.zip
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
@@ -104,9 +106,11 @@ ExternalProject_Add(
 	-DBUILD_HANDBOOK_PDF=OFF
 	-DBUILD_HOWTO_HTML=OFF
 	-DBUILD_HOWTO_PDF=OFF
-    CMAKE_ARGS -D CMAKE_BUILD_TYPE=Debug
+	-DINSTALL_GENERATED_DOCS=ON
+    CMAKE_ARGS -D CMAKE_BUILD_TYPE=Release
     CMAKE_CACHE_ARGS=
 	"-DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS} /UMBCS /D_UNICODE /DUNICODE"
+        -DGENERATED_DOCS_DIR=${bibletime-docs_SOURCE_DIR}/docs/${BT_DOC_REV}
 	-DCMAKE_PREFIX_PATH=${Qt_PREFIX}
 	-DFindSword_LIBS=${sword_BINARY_DIR}/Release/sword.lib
 	-DFindSword_INCS=${PROJECT_INSTALL_DIR}/include
