@@ -37,4 +37,5 @@ jobs:
     - name: Build BibleTime Installer
       run: |
         cd build
-        MSBuild.exe bibletime-win.sln
+        which msbuild.exe
+        msbuild.exe bibletime-win.sln
