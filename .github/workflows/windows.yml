@@ -27,20 +27,14 @@ jobs:
     - name: Install NSIS
       run: choco install nsis
 
-    - name: Output Env
-      run: |
-        echo $PATH
-        env
-
     - name: Running cmake
       run: |
         cd ${{ github.workspace }}
         mkdir build
         cd build
         cmake .. 
-      
 
-      #- name: Build Solution (windows)
-      #run: |
-      #cd build
-      #MSBuild.exe CMakeHelloWorld.sln
+    - name: Build BibleTime Installer
+      run: |
+        cd build
+        MSBuild.exe bibletime-win.sln
