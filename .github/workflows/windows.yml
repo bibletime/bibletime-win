@@ -25,12 +25,14 @@ jobs:
         arch: 'win32_msvc2019'
         dir: '${{ github.workspace }}/'
 
-    - name: output env
+    - name: Install NSIS
+      uses: joncloud/makensis-action@v3.6
+
+    - name: Output env
       run: |
         echo $PATH
+        env
 
-        #    - name: Install NSIS
-        #uses: joncloud/makensis-action@v3.6
         #with:
         #arguments: "/V3"
 
