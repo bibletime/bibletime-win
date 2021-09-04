@@ -14,7 +14,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
  
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
@@ -26,15 +25,13 @@ jobs:
         dir: '${{ github.workspace }}/'
 
     - name: Install NSIS
-      uses: joncloud/makensis-action@v3.6
+      choco install nsis
 
-    - name: Output env
+    - name: Output Env
       run: |
         echo $PATH
         env
 
-        #with:
-        #arguments: "/V3"
 
 
       #    - name: Running cmake (windows)
