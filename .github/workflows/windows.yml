@@ -1,5 +1,5 @@
 name: CI
-# Workflow file for windows
+# Workflow for building BibleTime for Windows
 on:
   push:
     branches:
