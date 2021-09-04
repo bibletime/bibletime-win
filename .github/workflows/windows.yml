@@ -27,8 +27,7 @@ jobs:
 
     - name: output env
       run: |
-      echo $PATH
-      echo %PATH%
+        echo $PATH
 
         #    - name: Install NSIS
         #uses: joncloud/makensis-action@v3.6
