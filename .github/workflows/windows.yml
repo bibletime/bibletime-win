@@ -34,8 +34,11 @@ jobs:
         cd build
         cmake .. 
 
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+
     - name: Build BibleTime Installer
       run: |
         cd build
-        which msbuild.exe
-        msbuild.exe bibletime-win.sln
+        which MSBuild.exe
+        MSBuild.exe bibletime-win.sln
