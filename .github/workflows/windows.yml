@@ -32,16 +32,14 @@ jobs:
         echo $PATH
         env
 
+    - name: Running cmake
+      run: |
+      cd ${{ github.workspace }}
+      mkdir build
+      cd build
+      cmake .. 
+      
 
-
-      #    - name: Running cmake (windows)
-      #run: |
-      #cd ${{ github.workspace }}
-      #mkdir build
-      #cd build
-      #cmake .. -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}
-      #/../vcpkg/scripts/buildsystems/vcpkg.cmake
-      #
       #- name: Build Solution (windows)
       #run: |
       #cd build
