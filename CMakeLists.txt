@@ -95,10 +95,10 @@ MESSAGE(STATUS  "docs: ${bibletime-docs_SOURCE_DIR}" )
 
 ExternalProject_Add(
     bibletime
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
+    #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
     #GIT_REPOSITORY https://github.com/bibletime/bibletime.git
     #GIT_TAG ${GIT_BRANCH_OR_TAG} 
-    #URL https://github.com/bibletime/bibletime/archive/v3.0.1.zip
+    URL https://github.com/bibletime/bibletime/archive/v3.0.2.zip
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}

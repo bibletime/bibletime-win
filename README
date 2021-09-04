@@ -7,11 +7,11 @@ It will build BibleTime and create an install package.
 
 Installed Requirements:
 
-Microsoft Visual Studio Community Edition (2019, 2017)
+Microsoft Visual Studio Community Edition (2019)
 cmake (recent version like 3.17)
 NSIS (Nullsoft Scriptable Install System)
-pkg-config-lite (0.28-1)
-
+git
+Qt 5.15.2
 
 
 The environment variable VCINSTALLDIR must be correctly set or the Microsoft 
