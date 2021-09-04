@@ -34,10 +34,10 @@ jobs:
 
     - name: Running cmake
       run: |
-      cd ${{ github.workspace }}
-      mkdir build
-      cd build
-      cmake .. 
+        cd ${{ github.workspace }}
+        mkdir build
+        cd build
+        cmake .. 
       
 
       #- name: Build Solution (windows)
