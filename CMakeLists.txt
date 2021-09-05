@@ -56,7 +56,8 @@ Set(clucene_BINARY_DIR ${BINARY_DIR})
 ExternalProject_Add(
     sword
       #  URL http://crosswire.org/ftpmirror/pub/sword/source/v1.8/sword-1.8.1.tar.gz
-    GIT_REPOSITORY https://github.com/bibletime/sword-win.git
+    URL http://crosswire.org/ftpmirror/pub/sword/source/v1.9/sword-1.9.0.tar.gz
+      #GIT_REPOSITORY https://github.com/bibletime/sword-win.git
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
@@ -96,9 +97,10 @@ MESSAGE(STATUS  "docs: ${bibletime-docs_SOURCE_DIR}" )
 ExternalProject_Add(
     bibletime
     #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
-    #GIT_REPOSITORY https://github.com/bibletime/bibletime.git
+    GIT_REPOSITORY https://github.com/bibletime/bibletime.git
     #GIT_TAG ${GIT_BRANCH_OR_TAG} 
-    URL https://github.com/bibletime/bibletime/archive/v3.0.2.zip
+    GIT_TAG stable-3.0 
+    #URL https://github.com/bibletime/bibletime/archive/v3.0.2.zip
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
