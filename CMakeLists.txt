@@ -11,7 +11,7 @@ ExternalProject_Add(
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
-        -CMAKE_BUILD_TYPE=Release
+        -DCMAKE_BUILD_TYPE=Release
     CMAKE_CACHE_ARGS=
 	"-DCMAKE_CXX_FLAGS=-Zc:wchar_t -DCMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} /UMBCS /D_UNICODE /DUNICODE"
 )
@@ -30,7 +30,7 @@ ExternalProject_Add(
         -DBUILD_CURL_EXE=OFF
     CMAKE_CACHE_ARGS=
         "-DCMAKE_CXX_FLAGS=-Zc:wchar_t -DCMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} /UMBCS /D_UNICODE /DUNICODE"
-        -CMAKE_BUILD_TYPE=Release
+        -DCMAKE_BUILD_TYPE=Release
 )
 
 
@@ -46,7 +46,7 @@ ExternalProject_Add(
     CMAKE_CACHE_ARGS=
           -DZLIB_INCLUDE_DIR=${zlib_INCLUDE_DIR}
         "-DCMAKE_CXX_FLAGS=-Zc:wchar_t -DCMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} /UMBCS /D_UNICODE /DUNICODE"
-        -CMAKE_BUILD_TYPE=Release
+        -DCMAKE_BUILD_TYPE=Release
     DEPENDS zlib
 )
 ExternalProject_Get_Property(clucene SOURCE_DIR)
@@ -76,7 +76,7 @@ ExternalProject_Add(
         -DCLucene_INCLUDE_DIR=${clucene_SOURCE_DIR}/src/core
 	-DCLucene_LIBRARY_DIR=${PROJECT_INSTALL_DIR}/include
         -DCLucene_LIBRARY=${clucene_BINARY_DIR}/bin/Release/clucene-core.lib
-        -CMAKE_BUILD_TYPE=Release
+        -DCMAKE_BUILD_TYPE=Release
     DEPENDS curl zlib clucene 
 )
 ExternalProject_Get_Property(sword SOURCE_DIR)
@@ -131,7 +131,6 @@ ExternalProject_Add(
 	-DMSVC_REDIST=${MSVC_REDIST}
         -DCMAKE_BUILD_TYPE=Release
 	-DCMAKE_CONFIGURATION_TYPES=${CMAKE_CONFIGURATION_TYPES} 
-        -CMAKE_BUILD_TYPE=Release
     INSTALL_COMMAND
         ${CMAKE_COMMAND} --build . --config Release --target install
         COMMAND ${CMAKE_COMMAND} --build . --config Release --target PACKAGE
