@@ -70,9 +70,9 @@ ExternalProject_Add(
         -DCURL_LIBRARY=${PROJECT_INSTALL_DIR}/lib/libcurl_imp.lib
     CMAKE_CACHE_ARGS=
         "-DCMAKE_CXX_FLAGS=-Zc:wchar_t -DCMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} /UMBCS /D_UNICODE /DUNICODE"
-        -DCLUCENE_INCLUDE_DIR=""
-        -DCLUCENE_LIBRARY_DIR=""
-        -DCLUCENE_LIBRARY=""
+        -DCLucene_INCLUDE_DIR=${clucene_SOURCE_DIR}/src/core
+	-DCLucene_LIBRARY_DIR=${PROJECT_INSTALL_DIR}/include
+        -DCLucene_LIBRARY=${clucene_BINARY_DIR}/bin/Release/clucene-core.lib
     DEPENDS curl zlib clucene 
 )
 ExternalProject_Get_Property(sword SOURCE_DIR)
