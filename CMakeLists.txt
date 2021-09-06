@@ -58,20 +58,24 @@ Set(clucene_BINARY_DIR ${BINARY_DIR})
 
 ExternalProject_Add(
     sword
-      #  URL http://crosswire.org/ftpmirror/pub/sword/source/v1.8/sword-1.8.1.tar.gz
-    URL http://crosswire.org/ftpmirror/pub/sword/source/v1.9/sword-1.9.0.tar.gz
+      #URL http://crosswire.org/ftpmirror/pub/sword/source/v1.8/sword-1.8.1.tar.gz
+      #URL http://crosswire.org/ftpmirror/pub/sword/source/v1.9/sword-1.9.0.tar.gz
       #GIT_REPOSITORY https://github.com/bibletime/sword-win.git
+    GIT_REPOSITORY https://github.com/bibletime/sword-1.9.0-win.git
+      #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../sword
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
-        -DSWORD_NO_ICU=No
-        -DSWORD_BUILD_UTILS=No
-        -DSWORD_BUILD_TESTS=No
+	-DSWORD_NO_ICU=OFF
         -DLIBSWORD_LIBRARY_TYPE=Shared
         -DSWORD_NO_BZIP2=Yes
         -DCURL_INCLUDE_DIR="${PROJECT_INSTALL_DIR}"
         -DCURL_LIBRARY=${PROJECT_INSTALL_DIR}/lib/libcurl_imp.lib
     CMAKE_CACHE_ARGS=
+	-DSWORD_SWIG_BINDINGS=OFF
+	-DSWORD_BUILD_UTILS=No
+	-DSWORD_BUILD_EXAMPLES=OFF
+	-DSWORD_BUILD_TESTS=OFF
         "-DCMAKE_CXX_FLAGS=-Zc:wchar_t -DCMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} /UMBCS /D_UNICODE /DUNICODE"
         -DCLucene_INCLUDE_DIR=${clucene_SOURCE_DIR}/src/core
 	-DCLucene_LIBRARY_DIR=${PROJECT_INSTALL_DIR}/include
