@@ -3,6 +3,7 @@ project(bibletime-win)
 cmake_minimum_required(VERSION 3.17)
 include(ExternalProject)
 Set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE) 
+Set(BT_DOC_REV v3.0.2)
 Set(PROJECT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/install) 
 
 ExternalProject_Add(
@@ -93,6 +94,7 @@ Set(sword_BINARY_DIR ${BINARY_DIR})
 ExternalProject_Add(
     bibletime-docs
     GIT_REPOSITORY https://github.com/bibletime/generated_docs.git
+    GIT_TAG master
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ""
     INSTALL_COMMAND ""

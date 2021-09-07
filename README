@@ -16,18 +16,11 @@ Qt 5.15.2
 Clone this git repository creating the bibletime-win directory
 In the parent directory of bibletime-win create a "build" directory.
 
-The environment variable VCINSTALLDIR must be correctly set or the Microsoft 
-redistributible library won't be copied to the package. One way to do this 
-is to run the vcvars32.bat script in a cmd windows.
-For VS 2019 installed at the default location:
-
+Run this bat script
 "c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\vc\Auxiliary/Build\vcvars32.bat"
 
-
-From the "build" directory run init.bat like this:
-  ..\bibletime-win\init.bat   (edit init.bat if necessary to change compilers or paths) 
-Open the bibletime-win.sln solution in Visual Studio. It will be in the "build" directory.
-Build the solution. 
+From the "build" directory run init32.bat like this:
+  ..\bibletime-win\init32.bat   (edit init32.bat if necessary to change compilers or paths) 
 
 Run either of the following commands to build the windows installer.
 
@@ -38,10 +31,7 @@ devenv.exe (open bibletime-win.sln and build all)
 msbuild /target:bibletime /p:Configuration=Release /p:Platform=Win32 bibletime-win.sln
 
 
-
 If the build works correctly you should see a line that looks like this:
-
-7>  CPack: - package: C:/bibletime/build/bibletime-prefix/src/bibletime-build/BibleTime-3.0.2-win32.exe generated.
-
+   CPack: - package: C:/bibletime/build/bibletime-prefix/src/bibletime-build/BibleTime-3.0.2-win32.exe generated.
 This exe file is the installer package for BibleTime.
 
