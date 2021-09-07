@@ -35,7 +35,7 @@ Run either of the following commands to build the windows installer.
 devenv.exe (open bibletime-win.sln and build all)
 
 2.
-msbuild /target:ALL_BUILD /p:Configuration=Release /p:Platform=Win32 bibletime-win.sln
+msbuild /target:bibletime /p:Configuration=Release /p:Platform=Win32 bibletime-win.sln
 
 
 
