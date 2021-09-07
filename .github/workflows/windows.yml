@@ -41,4 +41,4 @@ jobs:
       run: |
         cd build
         "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars32.bat"
-        MSBuild.exe bibletime-win.sln
+        MSBuild.exe /target:bibletime /p:Configuration=Release /p:Platform=Win32 bibletime-win.sln
