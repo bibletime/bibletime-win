@@ -21,7 +21,7 @@ jobs:
         version: '5.15.2'
         host: 'windows'
         target: 'desktop'
-        arch: 'win32_msvc2019'
+        arch: 'win64_msvc2019'
 
     - name: Install NSIS
       run: choco install nsis
@@ -40,5 +40,5 @@ jobs:
     - name: Build BibleTime Installer
       run: |
         cd build
-        "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars32.bat"
+        "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars64.bat"
         MSBuild.exe /target:bibletime /p:Configuration=Release bibletime-win.sln
