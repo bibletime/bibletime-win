@@ -43,6 +43,12 @@ jobs:
         "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars64.bat"
         MSBuild.exe  /p:Configuration=Release /p:Platform=x64 bibletime-win.sln
 
+    - name: Show Environment 
+      run: |
+        pwd
+        ls -l
+        env
+
     - name: Save BibleTime Installer
       uses: actions/upload-artifact@v2
       with:
