@@ -1,4 +1,4 @@
-name: CI
+name: Windows CI
 # Workflow for building BibleTime for Windows
 on:
   push:
@@ -42,3 +42,11 @@ jobs:
         cd build
         "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars64.bat"
         MSBuild.exe  /p:Configuration=Release /p:Platform=x64 bibletime-win.sln
+
+    - name: Save BibleTime Installer
+      uses: actions/upload-artifact@v2
+        with:
+          name: bibletime-x64-installer
+          path: bibletime-prefix/src/bibletime-build/BibleTime-3.0.2-win64.exe
+
+
