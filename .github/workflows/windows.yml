@@ -47,13 +47,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: bibletime-x64-installer
-        path: bibletime-prefix/src\bibletime-build\BibleTime-3.0.2-win64.exe
+        path: bibletime-prefix\src\bibletime-build\BibleTime-3.0.2-win64.exe
         retention-days: 5
 
     - name: Show Environment 
       run: |
-        pwd
-        ls
         env
-
 
