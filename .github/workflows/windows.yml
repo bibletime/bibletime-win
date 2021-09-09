@@ -51,6 +51,7 @@ jobs:
         retention-days: 5
 
     - name: Show Environment 
+      run: 'dir'
+      run: 'dir $( $GITHUB_WORKSPACE )'
       run: |
         env
-
