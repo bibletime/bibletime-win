@@ -8,7 +8,7 @@ on:
 
 jobs:
   Windows:
-    name: Build-Windows
+    name: build-windows
     runs-on: [windows-2019]
 
     steps:
@@ -29,9 +29,9 @@ jobs:
     - name: Running cmake
       run: |
         cd ${{ github.workspace }}
-        mkdir ..\build
-        cd ..\build
-        cmake ..\bibletime-win 
+        mkdir build
+        cd build
+        cmake .. 
 
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.3
@@ -39,15 +39,15 @@ jobs:
 
     - name: Build BibleTime Installer
       run: |
-        cd ..\build
+        cd build
         "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars64.bat"
         MSBuild.exe  /p:Configuration=Release /p:Platform=x64 bibletime-win.sln
 
     - name: Save BibleTime Installer
       uses: actions/upload-artifact@v2
       with:
-        name: BibleTime-x64-Installer
-        path: ..\build\bibletime-prefix\src\bibletime-build\BibleTime-3.0.2-win64.exe
+        name: bibletime-x64-installer
+        path: build\bibletime-prefix\src\bibletime-build\BibleTime-3.0.2-win64.exe
         retention-days: 5
 
     - name: Show Environment 
