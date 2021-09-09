@@ -39,7 +39,7 @@ jobs:
 
     - name: Build BibleTime Installer
       run: |
-        cd build
+        cd ..\build
         "c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary/Build\vcvars64.bat"
         MSBuild.exe  /p:Configuration=Release /p:Platform=x64 bibletime-win.sln
 
