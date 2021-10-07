@@ -1,5 +1,11 @@
 name: Windows CI
+
 # Workflow for building BibleTime for Windows
+#
+# cmake is used to checkout, configure, and build
+# the following projects
+#     zlib, curl, clucene, sword, and bibletime
+
 on:
   push:
     branches:

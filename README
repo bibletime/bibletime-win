@@ -1,6 +1,14 @@
 
 Build BibleTime for Windows
 
+Automatic Build
+
+See the github actions for bibletime/bibletime-win
+Also see the .github/workflows/windows.yml file
+
+
+Manual Build
+
 This project uses a cmake script to create a build system for Microsoft Visual Studio.
 It will build BibleTime and create an install package. 
 
