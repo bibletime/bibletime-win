@@ -11,7 +11,10 @@ on:
     branches:
       - master
   repository_dispatch:
-  pull_request: {}
+
+env:
+  BT_VERSION: 3.0.2
+  QT_VERSION: 5.15.2
 
 jobs:
   Windows:
@@ -25,7 +28,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v2
       with:
-        version: '5.15.2'
+        version: ${{ env.QT_VERSION }}
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'
@@ -54,7 +57,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: bibletime-x64-installer
-        path: build\bibletime-prefix\src\bibletime-build\BibleTime-3.0.2-win64.exe
+        path: build\bibletime-prefix\src\bibletime-build\BibleTime-${{env.BT_VERSION}}-win64.exe
         retention-days: 5
 
     - name: Show Environment 
