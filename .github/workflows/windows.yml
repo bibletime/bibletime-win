@@ -7,9 +7,6 @@ name: Windows CI
 #     zlib, curl, clucene, sword, and bibletime
 
 on:
-  push:
-    branches:
-      - master
   repository_dispatch:
 
 env:
