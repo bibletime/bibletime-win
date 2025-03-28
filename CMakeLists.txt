@@ -3,8 +3,24 @@ project(bibletime-win)
 cmake_minimum_required(VERSION 3.17)
 include(ExternalProject)
 Set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE) 
-Set(BT_DOC_REV v3.0.2)
+Set(BT_DOC_REV v3.1.1)
 Set(PROJECT_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/install) 
+
+
+
+ExternalProject_Add(
+    icu
+    #URL https://github.com/unicode-org/icu/releases/download/release-76-1/icu4c-76_1-Win64-MSVC2022.zip
+    URL https://github.com/unicode-org/icu/releases/download/release-74-2/icu4c-74_2-Win64-MSVC2019.zip
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND
+	COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_BINARY_DIR}/icu-prefix/src/icu/include" "${PROJECT_INSTALL_DIR}/include"
+	COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_BINARY_DIR}/icu-prefix/src/icu/bin64" "${PROJECT_INSTALL_DIR}/bin"
+	COMMAND ${CMAKE_COMMAND} -E copy_directory "${PROJECT_BINARY_DIR}/icu-prefix/src/icu/lib64" "${PROJECT_INSTALL_DIR}/lib"
+)
+
+
 
 ExternalProject_Add(
     zlib
@@ -67,7 +83,6 @@ ExternalProject_Add(
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
-	-DSWORD_NO_ICU=OFF
         -DLIBSWORD_LIBRARY_TYPE=Shared
         -DSWORD_NO_BZIP2=Yes
         -DCURL_INCLUDE_DIR="${PROJECT_INSTALL_DIR}"
@@ -82,7 +97,7 @@ ExternalProject_Add(
 	-DCLucene_LIBRARY_DIR=${PROJECT_INSTALL_DIR}/include
         -DCLucene_LIBRARY=${clucene_BINARY_DIR}/bin/Release/clucene-core.lib
         -DCMAKE_BUILD_TYPE=Release
-    DEPENDS curl zlib clucene 
+    DEPENDS curl zlib clucene icu 
 )
 ExternalProject_Get_Property(sword SOURCE_DIR)
 Set(sword_SOURCE_DIR ${SOURCE_DIR})
@@ -106,11 +121,14 @@ MESSAGE(STATUS  "docs: ${bibletime-docs_SOURCE_DIR}" )
 
 ExternalProject_Add(
     bibletime
-    #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
     GIT_REPOSITORY https://github.com/bibletime/bibletime.git
+    GIT_TAG 9b6b5fef799ca654352e5efa6fe6a0af6fbbfe37
+
+    #SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../bibletime
     #GIT_TAG ${GIT_BRANCH_OR_TAG} 
-    GIT_TAG stable-3.0 
-    #URL https://github.com/bibletime/bibletime/archive/v3.0.2.zip
+    #GIT_TAG master 
+    #URL https://github.com/bibletime/bibletime/archive/v3.1.1.zip
+
     CMAKE_ARGS 
         -DCMAKE_INSTALL_PREFIX=${PROJECT_INSTALL_DIR}
         -DCMAKE_PREFIX_PATH=${PROJECT_INSTALL_DIR}
@@ -133,14 +151,14 @@ ExternalProject_Add(
 	-DCURL_LIBRARY=${PROJECT_INSTALL_DIR}/bin/libcurl.dll
 	-DZLIB_LIBRARY_RELEASE=${zlib_BINARY_DIR}/Release/zlib.dll
 	-DQT_WINDEPLOYQT_EXECUTABLE=${Qt_PREFIX}/bin/windeployqt.exe
-	-DPKG_CONFIG_EXECUTABLE:FILEPATH=C:/bibletime/windows/pkg-config-lite-0.28-1/bin/pkg-config.exe
+	#-DPKG_CONFIG_EXECUTABLE:FILEPATH=C:/bibletime/windows/pkg-config-lite-0.28-1/bin/pkg-config.exe
 	-DMSVC_REDIST=${MSVC_REDIST}
         -DCMAKE_BUILD_TYPE=Release
 	-DCMAKE_CONFIGURATION_TYPES=${CMAKE_CONFIGURATION_TYPES} 
     INSTALL_COMMAND
         ${CMAKE_COMMAND} --build . --config Release --target install
         COMMAND ${CMAKE_COMMAND} --build . --config Release --target PACKAGE
-    DEPENDS sword clucene zlib curl bibletime-docs 
+    DEPENDS sword clucene zlib curl bibletime-docs icu
 )
 Link_Directories(${CMAKE_BINARY_DIR}/install/lib)
 

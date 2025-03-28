@@ -15,31 +15,38 @@ It will build BibleTime and create an install package.
 
 Installed Requirements:
 
-Microsoft Visual Studio Community Edition (2019)
+Microsoft Visual Studio Community Edition (2022)
 cmake (recent version like 3.17+)
 NSIS (Nullsoft Scriptable Install System)
 git
-Qt 5.15.2
+Qt 6.8.2
 
-Clone this git repository creating the bibletime-win directory
-In the parent directory of bibletime-win create a "build" directory.
+******************************************
+Build steps
 
-Run this bat script
-"c:\Program Files (x86)\Microsoft Visual Studio\2019\Community\vc\Auxiliary/Build\vcvars32.bat"
+1. Create a directory for building BibleTime.
 
-From the "build" directory run init32.bat like this:
-  ..\bibletime-win\init32.bat   (edit init32.bat if necessary to change compilers or paths) 
+2. Change into this directory.
 
-Run either of the following commands to build the windows installer.
+3. Clone the bibletime/bibletime-win git repository.
 
-1.
-devenv.exe (open bibletime-win.sln and build all)
+4. In the parent directory of bibletime-win create a "build" directory.
 
-2.
-msbuild /target:bibletime /p:Configuration=Release /p:Platform=Win32 bibletime-win.sln
+5. Run this bat script to initialize Visual Stutio.
+     "c:\Program Files\Microsoft Visual Studio\2022\Community\vc\Auxiliary/Build\vcvars64.bat"
 
+6. From the "build" directory run init64.bat like this:
+  ..\bibletime-win\init64.bat   (edit init64.bat if necessary to change compilers or paths) 
 
-If the build works correctly you should see a line that looks like this:
-   CPack: - package: C:/bibletime/build/bibletime-prefix/src/bibletime-build/BibleTime-3.0.2-win32.exe generated.
+7. Run either of the following commands to build the windows installer.
+
+    devenv.exe (open bibletime-win.sln and use the menu ALL_BUILD/build in the Solution Explorer)
+
+    msbuild /target:bibletime /p:Configuration=Release /p:Platform=Win64 bibletime-win.sln
+
+8, If the build works correctly you should see a line that looks simular to this:
+   CPack: - package: C:/bibletime/build/bibletime-prefix/src/bibletime-build/BibleTime-master-win64.exe generated.
 This exe file is the installer package for BibleTime.
+
+
 
